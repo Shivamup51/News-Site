@@ -6,7 +6,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: '*', // Be cautious with this in production
+  origin: ['https://yourfrontenddomain.com'], // Replace with your frontend's URL
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -27,7 +27,7 @@ async function makeApiRequest(url) {
   } catch (error) {
     console.error("API request error:", error.response ? error.response.data : error);
     return {
-      status: error.response ? error.response.status : 500,  // Return proper error status
+      status: error.response ? error.response.status : 500,
       success: false,
       message: "Failed to fetch data from the API",
       error: error.response ? error.response.data : error.message,
