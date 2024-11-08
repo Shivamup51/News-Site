@@ -27,7 +27,7 @@ async function makeApiRequest(url) {
   } catch (error) {
     console.error("API request error:", error.response ? error.response.data : error);
     return {
-      status: 500,
+      status: error.response ? error.response.status : 500,  // Return proper error status
       success: false,
       message: "Failed to fetch data from the API",
       error: error.response ? error.response.data : error.message,
